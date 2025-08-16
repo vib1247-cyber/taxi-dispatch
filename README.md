@@ -12,6 +12,7 @@ A modular Python system that:
 
 - KMeans clustering on latitude/longitude to detect zones
 - RandomForestRegressor (and optional RandomForestClassifier) for demand prediction
+- XGBoost for advanced demand prediction with better handling of non-linear relationship
 - Tabular Q-learning with time-aware states and move-cost penalties
 - Matplotlib/Seaborn-based visualizations, animated GIF route output
 - Modular, documented code to support future dataset updates
