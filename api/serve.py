@@ -6,6 +6,7 @@ from typing import Dict, Optional
 import numpy as np
 import pandas as pd
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from taxi_dispatch.io_utils import load_joblib
@@ -16,6 +17,14 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 OUTPUTS_DIR = PROJECT_ROOT / "outputs"
 
 app = FastAPI(title="Smart Taxi Dispatch API", version="0.1.0")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 def _load_wrapper() -> DemandModelWrapper:
@@ -48,6 +57,11 @@ class PredictRequest(BaseModel):
 class DistanceRequest(BaseModel):
     from_zone: int
     to_zone: int
+
+
+@app.get("/")
+def root():
+    return {"message": "Smart Taxi API is live 🚖"}
 
 
 @app.get("/health")
