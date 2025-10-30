@@ -12,7 +12,8 @@ services:
     name: smart-taxi-dashboard
     env: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "streamlit run dashboard/app.py --server.port $PORT --server.address 0.0.0.0"
+    # 🧠 Run main.py first to generate outputs/cluster_map.png, then start Streamlit
+    startCommand: "python main.py && streamlit run dashboard/app.py --server.port $PORT --server.address 0.0.0.0"
     envVars:
       - key: PYTHON_VERSION
         value: 3.9
