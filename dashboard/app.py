@@ -7,6 +7,11 @@ from datetime import datetime, time
 import pandas as pd
 import streamlit as st
 import plotly.express as px
+import sys
+import os
+
+# Add parent directory to path for Render deployment
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from taxi_dispatch.io_utils import load_joblib
 from taxi_dispatch.demand_model import DemandModelWrapper, build_api_feature_row
